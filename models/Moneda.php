@@ -13,7 +13,7 @@
         }
 
        /*  TODO: Listar_Registros por ID en especifico */
-        public function get_moneda_x_cat_id($mon_id){
+        public function get_moneda_x_mon_id($mon_id){
             $conectar=parent::Conexion();
             $sql="SP_L_MONEDA_02 ?";
             $query=$conectar->prepare($sql);

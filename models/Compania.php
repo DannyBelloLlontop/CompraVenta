@@ -2,7 +2,7 @@
     class Compania extends Conectar{
 
         /* TODO: Listar_Registros */
-        public function get_compania_x_suc_id(){
+        public function get_compania(){
             $conectar=parent::Conexion();
             $sql="SP_L_COMPANIA_01";
             $query=$conectar->prepare($sql);
