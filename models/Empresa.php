@@ -9,7 +9,6 @@
             $query->bindValue(1,$com_id);
             $query->execute();
             return $query->fetchAll(PDO::FETCH_ASSOC);
-
         }
 
        /*  TODO: Listar_Registros por ID en especifico */
