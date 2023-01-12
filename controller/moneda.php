@@ -22,9 +22,10 @@
             $data=Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array = $row["mon_nom"];
-                $sub_array = "Editar";
-                $sub_array = "Eliminar";
+                $sub_array[] = $row["MON_NOM"];
+                $sub_array[] = $row["FECH_CREA"];
+                $sub_array[] = '<button type="button" onclick="editar('.$row["MON_ID"].')" id="'.$row["MON_ID"].'" class="btn btn-warning btn-icon waves-effect waves-light"><i class="ri-edit-line"></i></button>';
+                $sub_array[] = '<button type="button" onclick="eliminar('.$row["MON_ID"].')" id="'.$row["MON_ID"].'" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-delete-bin-5-line"></i></button>';
                 $data[] = $sub_array;
             }
 
@@ -41,9 +42,9 @@
             $datos=$moneda->get_moneda_x_mon_id($_POST["mon_id"]);
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
-                    $output["mon_id"]=$row["mon_id"];
-                    $output["suc_id"]=$row["suc_id"];
-                    $output["mon_nom"]=$row["mon_nom"];
+                    $output["MON_ID"]=$row["MON_ID"];
+                    $output["SUC_ID"]=$row["SUC_ID"];
+                    $output["MON_NOM"]=$row["MON_NOM"];
                 }
                 echo json_encode($output);
             }
