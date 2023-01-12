@@ -86,6 +86,7 @@
                     $query->execute();
                     $resultado = $query->fetch();
                     if(is_array($resultado) and count($resultado) > 0){
+                        /* TODO:Generar variables de sesion del usuario */
                         $_SESSION["USU_ID"]=$resultado["USU_ID"];
                         $_SESSION["USU_NOM"]=$resultado["USU_NOM"];
                         $_SESSION["USU_APE"]=$resultado["USU_APE"];
