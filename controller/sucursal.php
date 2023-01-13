@@ -10,9 +10,9 @@
         /* TODO: Guardar y Editar, guardar cuando el ID este vacio y actualizar cuando se envie el ID */
         case "guardaryeditar":
             if(empty($_POST["suc_id"])){
-                $sucursal->insert_sucursal($_POST["com_id"],$_POST["suc_nom"],$_POST["suc_ruc"]);
+                $sucursal->insert_sucursal($_POST["emp_id"],$_POST["suc_nom"]);
             }else{
-                $sucursal->update_sucursal($_POST["suc_id"],$_POST["com_id"],$_POST["suc_nom"],$_POST["suc_ruc"]);
+                $sucursal->update_sucursal($_POST["suc_id"],$_POST["emp_id"],$_POST["suc_nom"]);
             }
             break;
 
@@ -22,9 +22,10 @@
             $data=Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array = $row["suc_nom"];
-                $sub_array = "Editar";
-                $sub_array = "Eliminar";
+                $sub_array[] = $row["SUC_NOM"];
+                $sub_array[] = $row["FECH_CREA"];
+                $sub_array[] = '<button type="button" onclick="editar('.$row["SUC_ID"].')" id="'.$row["SUC_ID"].'" class="btn btn-warning btn-icon waves-effect waves-light"><i class="ri-edit-line"></i></button>';
+                $sub_array[] = '<button type="button" onclick="eliminar('.$row["SUC_ID"].')" id="'.$row["SUC_ID"].'" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-delete-bin-5-line"></i></button>';
                 $data[] = $sub_array;
             }
 
@@ -38,13 +39,12 @@
             
             /* TODO: Mostrar información de registros segun su ID */
         case "mostrar":
-            $datos=$sucursal->get_sucursal_x_suc_id($_POST["emp_id"]);
+            $datos=$sucursal->get_sucursal_x_suc_id($_POST["suc_id"]);
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
-                    $output["emp_id"]=$row["emp_id"];
-                    $output["com_id"]=$row["com_id"];
-                    $output["emp_nom"]=$row["emp_nom"];
-                    $output["emp_ruc"]=$row["emp_ruc"];
+                    $output["SUC_ID"]=$row["SUC_ID"];
+                    $output["EMP_ID"]=$row["EMP_ID"];
+                    $output["SUC_NOM"]=$row["SUC_NOM"];
                 }
                 echo json_encode($output);
             }
