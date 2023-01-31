@@ -1,3 +1,5 @@
+var com_id = $('#COM_IDx').val();
+
 function init(){
     $("#mantenimiento_form").on("submit",function(e){
         guardaryeditar(e);
@@ -43,7 +45,7 @@ $(document).ready(function(){
         "ajax":{
             url:"../../controller/empresa.php?op=listar",
             type:"post",
-            data:{com_id:1}
+            data:{com_id:com_id}
         },
         "bDestroy": true,
         "responsive": true,

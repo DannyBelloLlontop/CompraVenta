@@ -45,7 +45,7 @@ $(document).ready(function(){
         "ajax":{
             url:"../../controller/sucursal.php?op=listar",
             type:"post",
-            data:{emp_id:1}
+            data:{emp_id:emp_id}
         },
         "bDestroy": true,
         "responsive": true,

@@ -1,3 +1,5 @@
+var suc_id = $('#SUC_IDx').val();
+
 function init(){
     $("#mantenimiento_form").on("submit",function(e){
         guardaryeditar(e);
@@ -43,7 +45,7 @@ $(document).ready(function(){
         "ajax":{
             url:"../../controller/moneda.php?op=listar",
             type:"post",
-            data:{suc_id:1}
+            data:{suc_id:suc_id}
         },
         "bDestroy": true,
         "responsive": true,
