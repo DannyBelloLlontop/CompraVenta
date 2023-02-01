@@ -35,12 +35,14 @@
             $data=Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array = $row["prov_nom"];
-                $sub_array = $row["prov_ruc"];
-                $sub_array = $row["prov_telf"];
-                $sub_array = $row["prov_direcc"];
-                $sub_array = "Editar";
-                $sub_array = "Eliminar";
+                $sub_array[] = $row["PROV_NOM"];
+                $sub_array[] = $row["PROV_RUC"];
+                $sub_array[] = $row["PROV_DIRECC"];
+                $sub_array[] = $row["PROV_TELF"];
+                $sub_array[] = $row["PROV_CORREO"];
+                $sub_array[] = $row["FECH_CREA"];
+                $sub_array[] = '<button type="button" onClick="editar('.$row["PROV_ID"].')" id="'.$row["PROV_ID"].'" class="btn btn-warning btn-icon waves-effect waves-light"><i class="ri-edit-2-line"></i></button>';
+                $sub_array[] = '<button type="button" onClick="eliminar('.$row["PROV_ID"].')" id="'.$row["PROV_ID"].'" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-delete-bin-5-line"></i></button>';
                 $data[] = $sub_array;
             }
 
@@ -57,13 +59,13 @@
             $datos=$proveedor->get_proveedor_x_prov_id($_POST["prov_id"]);
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
-                    $output["prov_id"]=$row["prov_id"];
-                    $output["emp_id"]=$row["emp_id"];
-                    $output["prov_nom"]=$row["prov_nom"];
-                    $output["prov_ruc"]=$row["prov_ruc"];
-                    $output["suc_telf"]=$row["suc_telf"];
-                    $output["prov_direcc"]=$row["prov_direcc"];
-                    $output["prov_correo"]=$row["prov_correo"];
+                    $output["PROV_ID"]=$row["PROV_ID"];
+                    $output["EMP_ID"]=$row["PROV_ID"];
+                    $output["PROV_NOM"]=$row["PROV_NOM"];
+                    $output["PROV_RUC"]=$row["PROV_RUC"];
+                    $output["PROV_TELF"]=$row["PROV_TELF"];
+                    $output["PROV_DIRECC"]=$row["PROV_DIRECC"];
+                    $output["PROV_CORREO"]=$row["PROV_CORREO"];
                 }
                 echo json_encode($output);
             }
